@@ -1,0 +1,12 @@
+#apiVersion: sources.eventing.knative.dev/v1alpha1
+#kind: CronJobSource
+#metadata:
+#  name: scheduler-cronjob
+#spec:
+#  schedule: "* * * * *"
+#  data: '{}'
+#  sink:
+#    apiVersion: serving.knative.dev/v1alpha1
+#    kind: Service
+#    name: scheduler
+#---

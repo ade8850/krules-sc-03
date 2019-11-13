@@ -1,0 +1,32 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-data-received-set-status-prop-changes-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: data-received
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-data-received-set-status
+---
+
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-data-received-set-status-set-status-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: "set-device-status"
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-data-received-set-status
+---
+

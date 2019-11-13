@@ -1,0 +1,18 @@
+
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: rules-results-broker-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: RulesResults
+  subscriber:
+    ref:
+      apiVersion: eventing.knative.dev/v1alpha1
+      kind: Broker
+      name: rules-results
+---
+
+

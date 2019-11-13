@@ -1,0 +1,31 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-temp-status-change-handler-trigger
+spec:
+  broker: class-a
+  filter:
+    attributes:
+      type: SubjectPropertyChanged
+      propertyname: temp_status
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-temp-status-change-handler
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-temp-status-recheck-trigger
+spec:
+  broker: class-a
+  filter:
+    attributes:
+      type: temp-status-recheck
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-temp-status-change-handler
+---

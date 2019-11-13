@@ -1,0 +1,28 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: scheduler
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: ade8850/sc-03-scaffold-scheduler:0.1.30
+
+          volumeMounts:
+            - name: config-krules-volume
+              mountPath: /krules/config
+            - name: config-krules-mongodb-volume
+              mountPath: /krules/config/mongodb
+
+      volumes:
+        - name: config-krules-volume
+          configMap:
+            name: config-krules
+        - name: config-krules-mongodb-volume
+          configMap:
+            name: config-krules-mongodb
+---
+

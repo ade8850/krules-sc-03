@@ -1,0 +1,36 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: results-mongodb
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: ade8850/sc-03-scaffold-results-mongodb:0.1.12
+          env:
+           - name: GOOGLE_APPLICATION_CREDENTIALS
+             value: /var/secrets/google/key.json
+
+          volumeMounts:
+            - name: config-krules-volume
+              mountPath: /krules/config
+            - name: config-krules-mongodb-volume
+              mountPath: /krules/config/mongodb
+            - name: google-cloud-key
+              mountPath: /var/secrets/google
+
+      volumes:
+        - name: config-krules-volume
+          configMap:
+            name: config-krules
+        - name: config-krules-mongodb-volume
+          configMap:
+            name: config-krules-mongodb
+        - name: google-cloud-key
+          secret:
+            secretName: google-cloud-key
+---
+

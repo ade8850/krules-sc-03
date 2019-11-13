@@ -1,0 +1,17 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-device-status-change-notifier-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: SubjectPropertyChanged
+      propertyname: status
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-device-status-change-notifier
+---
+

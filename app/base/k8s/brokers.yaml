@@ -1,0 +1,19 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Broker
+metadata:
+  name: class-a
+---
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Broker
+metadata:
+  name: class-b
+---
+#apiVersion: eventing.knative.dev/v1alpha1
+#kind: Broker
+#metadata:
+#  name: class-a-subject-property-changed
+#---
+#apiVersion: eventing.knative.dev/v1alpha1
+#kind: Broker
+#metadata:
+#  name: class-b-subject-property-changed

@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-data-received-store-mongodb-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: data-received
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-data-received-store-mongodb
+---

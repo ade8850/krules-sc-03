@@ -1,0 +1,24 @@
+
+apiVersion: events.cloud.run/v1alpha1
+kind: Storage
+metadata:
+  name: csv-uplodad-storage-source
+spec:
+  bucket: _BUCKET_
+  sink:
+    apiVersion: serving.knative.dev/v1alpha1
+    kind: Service
+    name: on-gcs-csv-upload
+
+  project: _PROJECT_ID_
+  secret:
+    name: google-cloud-key
+    key: key.json
+  pubSubSecret:
+    name: google-cloud-key
+    key: key.json
+
+---
+
+# Example gsutil command to upload a file:
+# gsutil cp storage.yaml gs://$BUCKET/testfilehere

@@ -1,0 +1,36 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: on-device-status-change-notifier
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: ade8850/sc-03-scaffold-on-device-status-change-notifier:0.1.5
+          env:
+           - name: GOOGLE_APPLICATION_CREDENTIALS
+             value: /var/secrets/google/key.json
+           - name: MATTERMOST_CHANNEL_URL
+             valueFrom:
+               configMapKeyRef:
+                 name: config-notifications
+                 key: mattermost.device_status_change.url
+
+          volumeMounts:
+            - name: config-krules-volume
+              mountPath: /krules/config
+            - name: google-cloud-key
+              mountPath: /var/secrets/google
+#
+      volumes:
+        - name: config-krules-volume
+          configMap:
+            name: config-krules
+        - name: google-cloud-key
+          secret:
+            secretName: google-cloud-key
+---
+

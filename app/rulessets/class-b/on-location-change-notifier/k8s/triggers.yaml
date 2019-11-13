@@ -1,0 +1,17 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: on-location-change-notifier-trigger
+spec:
+  broker: class-b
+  filter:
+    attributes:
+      type: SubjectPropertyChanged
+      propertyname: coords
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: on-location-change-notifier
+---
+

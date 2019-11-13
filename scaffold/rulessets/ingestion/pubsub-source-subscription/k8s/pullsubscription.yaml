@@ -1,0 +1,19 @@
+apiVersion: pubsub.cloud.run/v1alpha1
+kind: PullSubscription
+metadata:
+  name: pubsub-source-subscription-pubsub-source
+spec:
+  topic: ingestion
+  sink:
+    apiVersion: v1
+    kind: Service
+    name: pubsub-source-subscription
+
+  project: _PROJECT_ID_
+  secret:
+    name: google-cloud-key
+    key: key.json
+
+---
+
+

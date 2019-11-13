@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1alpha1
+kind: Trigger
+metadata:
+  name: scheduler-trigger
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: schedule-message
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1alpha1
+      kind: Service
+      name: scheduler
+---
