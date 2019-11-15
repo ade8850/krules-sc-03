@@ -1,12 +1,12 @@
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Trigger
 metadata:
-  name: results-mongodb-trigger
+  name: metrics-store-mongodb-trigger
 spec:
   broker: rules-results
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1alpha1
       kind: Service
-      name: results-mongodb
+      name: metrics-store-mongodb
 ---

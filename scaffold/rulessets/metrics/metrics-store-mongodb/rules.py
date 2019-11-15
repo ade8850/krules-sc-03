@@ -31,7 +31,7 @@ processing = Const.PROCESSING
 
 from pymongo import IndexModel, HASHED
 
-DBNAME = "sc-03-results"
+DBNAME = "sc-03-metrics"
 
 rulesdata = [
 

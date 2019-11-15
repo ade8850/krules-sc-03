@@ -1,12 +1,12 @@
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Trigger
 metadata:
-  name: results-errors-trigger
+  name: metrics-errors-trigger
 spec:
   broker: rules-results
   subscriber:
     ref:
       apiVersion: serving.knative.dev/v1alpha1
       kind: Service
-      name: results-errors
+      name: metrics-errors
 ---

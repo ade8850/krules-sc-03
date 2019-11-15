@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: results-mongodb
+  name: metrics-store-mongodb
 spec:
   template:
     metadata:
@@ -9,7 +9,7 @@ spec:
         autoscaling.knative.dev/minScale: "1"
     spec:
       containers:
-        - image: ade8850/sc-03-scaffold-results-mongodb:0.1.12
+        - image: ade8850/sc-03-scaffold-metrics-store-mongodb:0.1.12
           env:
            - name: GOOGLE_APPLICATION_CREDENTIALS
              value: /var/secrets/google/key.json
