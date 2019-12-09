@@ -44,7 +44,7 @@ rulesdata = [
         ruledata: {
             processing: [
                 WithDatabase(DBNAME),
-                WithCollection("all", indexes=[IndexModel([("origin_id", HASHED)])], capped=True, size=1000000),
+                WithCollection("metrics", indexes=[IndexModel([("origin_id", HASHED)])], capped=True, size=1000000),
                 SetPayloadProperty("origin_id", _(lambda _self: _self.payload["payload"]["_event_info"]["Originid"])),
                 SetPayloadProperty("time", _(lambda _self: parse(_self.payload["payload"]["_event_info"]["Time"]))),
                 MongoDBInsertOne(_(lambda _self: _self.payload)),
